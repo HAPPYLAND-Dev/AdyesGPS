@@ -1,5 +1,6 @@
 package me.xiaozhangup.adyesgps;
 
+import com.live.bemmamin.gps.api.GPSAPI;
 import ink.ptms.adyeshach.api.AdyeshachAPI;
 import me.xiaozhangup.adyesgps.tools.IString;
 import me.xiaozhangup.adyesgps.tools.Skull;
@@ -16,10 +17,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin implements Listener {
 
+    private GPSAPI gpsapi = null;
+
     @Override
     public void onEnable() {
         saveDefaultConfig();
         reloadConfig();
+        gpsapi = new GPSAPI(this);
         Bukkit.getPluginManager().registerEvents(new Main() , this);
         Bukkit.getPluginCommand("adyesgps").setExecutor((commandSender, command, s, inside) -> {
             Player p = (Player) commandSender;
@@ -67,7 +71,7 @@ public class Main extends JavaPlugin implements Listener {
                 e.setCancelled(true);
                 int i = e.getRawSlot() - 8;
                 if (getConfig().getLocation(i + ".loc") != null) {
-                    player.teleportAsync(getConfig().getLocation(i + ".loc"));
+                    gpsapi.startCompass(player , getConfig().getLocation(i + ".loc"));
                 }
             }
         }
