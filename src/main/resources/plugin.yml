@@ -1,0 +1,11 @@
+main: me.xiaozhangup.adyesgps.Main
+name: AdyesGPS
+version: 1.0
+api-version: 1.18
+depend:
+  - GPS
+  - Adyeshach
+authors:
+  - xiaozhangup
+commands:
+  adyesgps:

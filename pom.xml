@@ -8,10 +8,33 @@
     <artifactId>AdyesGPS</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <repositories>
+        <repository>
+            <id>papermc</id>
+            <url>https://papermc.io/repo/repository/maven-public/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
-            <groupId></groupId>
-            <artifactId></artifactId>
+            <groupId>live.gps</groupId>
+            <artifactId>GPS</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>/home/xiaozhangup/IdeaProjects/AdyesGPS/libs/GPS.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>adyes.bkm</groupId>
+            <artifactId>Adyes</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>/home/xiaozhangup/IdeaProjects/AdyesGPS/libs/Adyeshach-1.5.11.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.18.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
