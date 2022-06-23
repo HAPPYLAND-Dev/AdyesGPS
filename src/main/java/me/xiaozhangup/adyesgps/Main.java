@@ -13,18 +13,21 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Main extends JavaPlugin implements Listener {
+public class Main extends JavaPlugin {
 
-    private GPSAPI gpsapi = null;
+    public static GPSAPI gpsapi = null;
+    public static Plugin plugin;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
         reloadConfig();
         gpsapi = new GPSAPI(this);
-        Bukkit.getPluginManager().registerEvents(new Main() , this);
+        plugin = this;
+        Bukkit.getPluginManager().registerEvents(new Events() , this);
         Bukkit.getPluginCommand("adyesgps").setExecutor((commandSender, command, s, inside) -> {
             Player p = (Player) commandSender;
             Inventory inventory = Bukkit.createInventory(new Holder() , 45 , "NPC导航菜单");
@@ -62,18 +65,5 @@ public class Main extends JavaPlugin implements Listener {
             p.sendMessage("Done");
             return true;
         });
-    }
-
-    @EventHandler
-    public void onInvClick(InventoryClickEvent e) {
-        if (e.getWhoClicked() instanceof Player player) {
-            if (e.getInventory().getHolder() instanceof Holder) {
-                e.setCancelled(true);
-                int i = e.getRawSlot() - 8;
-                if (getConfig().getLocation(i + ".loc") != null) {
-                    gpsapi.startCompass(player , getConfig().getLocation(i + ".loc"));
-                }
-            }
-        }
     }
 }
