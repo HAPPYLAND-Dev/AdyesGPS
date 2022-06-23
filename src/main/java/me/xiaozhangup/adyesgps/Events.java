@@ -16,6 +16,7 @@ public class Events implements Listener {
                 int i = e.getRawSlot() - 8;
                 if (Main.plugin.getConfig().getLocation(i + ".loc") != null) {
                     gpsapi.startCompass(player , Main.plugin.getConfig().getLocation(i + ".loc"));
+                    player.closeInventory();
                 }
             }
         }
