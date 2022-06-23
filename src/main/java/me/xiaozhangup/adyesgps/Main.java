@@ -24,7 +24,6 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        reloadConfig();
         gpsapi = new GPSAPI(this);
         plugin = this;
         Bukkit.getPluginManager().registerEvents(new Events() , this);
